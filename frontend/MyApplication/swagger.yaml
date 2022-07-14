@@ -1,0 +1,834 @@
+swagger: '2.0'
+info:
+  title: API
+  description: Test description
+  termsOfService: https://www.google.com/policies/terms/
+  contact:
+    email: contact@snippets.local
+  license:
+    name: BSD License
+  version: v1
+host: 192.168.137.1:8000
+schemes:
+  - http
+basePath: /
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+  - Basic: []
+paths:
+  /auth/token/login/:
+    post:
+      operationId: auth_token_login_create
+      description: Use this endpoint to obtain user authentication token.
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/TokenCreate'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/TokenCreate'
+      tags:
+        - auth
+    parameters: []
+  /auth/token/logout/:
+    post:
+      operationId: auth_token_logout_create
+      description: Use this endpoint to logout user (remove user authentication token).
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - auth
+    parameters: []
+  /auth/users/:
+    get:
+      operationId: auth_users_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+      tags:
+        - auth
+    post:
+      operationId: auth_users_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/UserCreate'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/UserCreate'
+      tags:
+        - auth
+    parameters: []
+  /auth/users/activation/:
+    post:
+      operationId: auth_users_activation
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Activation'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Activation'
+      tags:
+        - auth
+    parameters: []
+  /auth/users/me/:
+    get:
+      operationId: auth_users_me_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+      tags:
+        - auth
+    put:
+      operationId: auth_users_me_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - auth
+    patch:
+      operationId: auth_users_me_partial_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - auth
+    delete:
+      operationId: auth_users_me_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - auth
+    parameters: []
+  /auth/users/resend_activation/:
+    post:
+      operationId: auth_users_resend_activation
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/SendEmailReset'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/SendEmailReset'
+      tags:
+        - auth
+    parameters: []
+  /auth/users/reset_password/:
+    post:
+      operationId: auth_users_reset_password
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/SendEmailReset'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/SendEmailReset'
+      tags:
+        - auth
+    parameters: []
+  /auth/users/reset_password_confirm/:
+    post:
+      operationId: auth_users_reset_password_confirm
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PasswordResetConfirm'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/PasswordResetConfirm'
+      tags:
+        - auth
+    parameters: []
+  /auth/users/reset_username/:
+    post:
+      operationId: auth_users_reset_username
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/SendEmailReset'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/SendEmailReset'
+      tags:
+        - auth
+    parameters: []
+  /auth/users/reset_username_confirm/:
+    post:
+      operationId: auth_users_reset_username_confirm
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/UsernameResetConfirm'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/UsernameResetConfirm'
+      tags:
+        - auth
+    parameters: []
+  /auth/users/set_password/:
+    post:
+      operationId: auth_users_set_password
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/SetPassword'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/SetPassword'
+      tags:
+        - auth
+    parameters: []
+  /auth/users/set_username/:
+    post:
+      operationId: auth_users_set_username
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/SetUsername'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/SetUsername'
+      tags:
+        - auth
+    parameters: []
+  /auth/users/{id}/:
+    get:
+      operationId: auth_users_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - auth
+    put:
+      operationId: auth_users_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - auth
+    patch:
+      operationId: auth_users_partial_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - auth
+    delete:
+      operationId: auth_users_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - auth
+    parameters:
+      - name: id
+        in: path
+        description: A unique integer value identifying this user.
+        required: true
+        type: integer
+  /products/:
+    get:
+      operationId: products_list
+      description: Vypis zoznamu vsetkych jedal
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+      tags:
+        - products
+    post:
+      operationId: products_create
+      description: Pridavanie noveho jedla
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Product'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Product'
+      tags:
+        - products
+    parameters: []
+  /products/search/:
+    get:
+      operationId: products_search_list
+      description: Vyhladavanie jedla
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+      tags:
+        - products
+    parameters: []
+  /products/{product_id}/:
+    get:
+      operationId: products_read
+      description: Vypis jedneho jedla podla id
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Product'
+      tags:
+        - products
+    put:
+      operationId: products_update
+      description: Zmena dat v jednom jedle podla id
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Product'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Product'
+      tags:
+        - products
+    delete:
+      operationId: products_delete
+      description: Vymazanie jedneho jedla podla id
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - products
+    parameters:
+      - name: product_id
+        in: path
+        required: true
+        type: string
+  /users/me/:
+    get:
+      operationId: users_me_list
+      description: Vypis dat usera podla id
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User1'
+      tags:
+        - users
+    put:
+      operationId: users_me_update
+      description: Zmena dat usera podla id
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/User1'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User1'
+      tags:
+        - users
+    delete:
+      operationId: users_me_delete
+      description: Vymazanie usera podla id
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - users
+    parameters: []
+  /users/me/nutrition/:
+    get:
+      operationId: users_me_nutrition_list
+      description: >-
+        Vypis dennika jedla podla kategorie (breakfast, lunch, dinner, snack) a
+        datumu a user.id
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - users
+    post:
+      operationId: users_me_nutrition_create
+      description: Pridavanie noveho zaznamu do food diary
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - users
+    parameters: []
+  /users/me/nutrition/{record_id}/:
+    get:
+      operationId: users_me_nutrition_read
+      description: Vypis jedneho zaznamu v food diary podla id
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - users
+    put:
+      operationId: users_me_nutrition_update
+      description: Zmena dat v jednom zazname jedla podla id
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - users
+    delete:
+      operationId: users_me_nutrition_delete
+      description: Vymazanie jedneho zaznamu v food diary
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - users
+    parameters:
+      - name: record_id
+        in: path
+        required: true
+        type: string
+  /users/me/progress/:
+    get:
+      operationId: users_me_progress_list
+      description: Vypis progresu od .. do ..
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - users
+    parameters: []
+  /users/{user_id}/:
+    get:
+      operationId: users_read
+      description: Vypis dat usera podla id
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User1'
+      tags:
+        - users
+    put:
+      operationId: users_update
+      description: Zmena dat usera podla id
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/User1'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User1'
+      tags:
+        - users
+    delete:
+      operationId: users_delete
+      description: Vymazanie usera podla id
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - users
+    parameters:
+      - name: user_id
+        in: path
+        required: true
+        type: string
+definitions:
+  TokenCreate:
+    type: object
+    properties:
+      password:
+        title: Password
+        type: string
+        minLength: 1
+      username:
+        title: Username
+        type: string
+        minLength: 1
+  User:
+    type: object
+    properties:
+      email:
+        title: Email address
+        type: string
+        format: email
+        maxLength: 254
+      photo:
+        title: Photo
+        type: string
+        maxLength: 100
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      username:
+        title: Username
+        description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+        type: string
+        readOnly: true
+        minLength: 1
+  UserCreate:
+    required:
+      - username
+      - password
+    type: object
+    properties:
+      email:
+        title: Email address
+        type: string
+        format: email
+        maxLength: 254
+      photo:
+        title: Photo
+        type: string
+        maxLength: 100
+      username:
+        title: Username
+        description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+        type: string
+        pattern: ^[\w.@+-]+$
+        maxLength: 150
+        minLength: 1
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      password:
+        title: Password
+        type: string
+        minLength: 1
+  Activation:
+    required:
+      - uid
+      - token
+    type: object
+    properties:
+      uid:
+        title: Uid
+        type: string
+        minLength: 1
+      token:
+        title: Token
+        type: string
+        minLength: 1
+  SendEmailReset:
+    required:
+      - email
+    type: object
+    properties:
+      email:
+        title: Email
+        type: string
+        format: email
+        minLength: 1
+  PasswordResetConfirm:
+    required:
+      - uid
+      - token
+      - new_password
+    type: object
+    properties:
+      uid:
+        title: Uid
+        type: string
+        minLength: 1
+      token:
+        title: Token
+        type: string
+        minLength: 1
+      new_password:
+        title: New password
+        type: string
+        minLength: 1
+  UsernameResetConfirm:
+    required:
+      - new_username
+    type: object
+    properties:
+      new_username:
+        title: Username
+        description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+        type: string
+        pattern: ^[\w.@+-]+$
+        maxLength: 150
+        minLength: 1
+  SetPassword:
+    required:
+      - new_password
+      - current_password
+    type: object
+    properties:
+      new_password:
+        title: New password
+        type: string
+        minLength: 1
+      current_password:
+        title: Current password
+        type: string
+        minLength: 1
+  SetUsername:
+    required:
+      - current_password
+      - new_username
+    type: object
+    properties:
+      current_password:
+        title: Current password
+        type: string
+        minLength: 1
+      new_username:
+        title: Username
+        description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+        type: string
+        pattern: ^[\w.@+-]+$
+        maxLength: 150
+        minLength: 1
+  Product:
+    required:
+      - name
+      - calories
+      - fats
+      - carbohydrates
+      - protein
+      - mass
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        maxLength: 100
+        minLength: 1
+      user:
+        title: User
+        type: integer
+        x-nullable: true
+      calories:
+        title: Calories
+        type: integer
+        maximum: 2147483647
+        minimum: -2147483648
+      fats:
+        title: Fats
+        type: number
+      carbohydrates:
+        title: Carbohydrates
+        type: number
+      protein:
+        title: Protein
+        type: number
+      mass:
+        title: Mass
+        type: integer
+        maximum: 2147483647
+        minimum: -2147483648
+      type:
+        title: Type
+        type: integer
+        x-nullable: true
+  Group:
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        maxLength: 10
+      user_owner:
+        title: User owner
+        type: integer
+        x-nullable: true
+      user_invited:
+        title: User invited
+        type: integer
+        x-nullable: true
+  User1:
+    required:
+      - name
+    type: object
+    properties:
+      name:
+        title: Name
+        type: string
+        maxLength: 100
+        minLength: 1
+      email:
+        title: Email address
+        type: string
+        format: email
+        maxLength: 254
+      weight:
+        title: Weight
+        type: number
+      height:
+        title: Height
+        type: integer
+        maximum: 2147483647
+        minimum: -2147483648
+      gender:
+        title: Gender
+        type: string
+        maxLength: 10
+      birthday:
+        title: Birthday
+        type: string
+        format: date
+        x-nullable: true
+      photo:
+        title: Photo
+        type: string
+        maxLength: 100
+      id:
+        title: ID
+        type: integer
+        readOnly: true
